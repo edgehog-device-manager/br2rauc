@@ -24,8 +24,8 @@ if [ -e ${TARGET_DIR}/etc/fstab ]; then
 	echo "LABEL=Data /data ext4 defaults,data=journal,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
 
 	# For bulk data (eg: firmware updates)
-	grep -qE 'LABEL=Upload' ${TARGET_DIR}/etc/fstab || \
-	echo "LABEL=Upload /upload ext4 defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
+	grep -qE 'LABEL=OTA' ${TARGET_DIR}/etc/fstab || \
+	echo "LABEL=OTA /var/tmp ext4 defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
 fi
 
 # Copy custom cmdline.txt file

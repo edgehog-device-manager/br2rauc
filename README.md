@@ -25,7 +25,7 @@ if you need something more customized to your needs.
   * 256 MB squashfs rescue partition
   * 2x 900 MB A & B rootfs partitions
   * 128 MB Persistent data partition
-  * 900 MB Upload partition (eg: storage for firmware updates)
+  * 900 MB OTA partition (eg: storage for firmware updates)
 
 ## Getting Started
 
