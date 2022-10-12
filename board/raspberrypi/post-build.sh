@@ -21,7 +21,7 @@ if [ -e ${TARGET_DIR}/etc/fstab ]; then
 	# For configuration data
 	# WARNING: data=journal is safest, but potentially slow!
 	grep -qE 'LABEL=Data' ${TARGET_DIR}/etc/fstab || \
-	echo "LABEL=Data /data ext4 defaults,data=journal,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
+	echo "LABEL=Data /var/lib ext4 defaults,data=journal,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
 
 	# For bulk data (eg: firmware updates)
 	grep -qE 'LABEL=Upload' ${TARGET_DIR}/etc/fstab || \
