@@ -10,6 +10,7 @@ test -n "${DTB_FILE}" || setenv DTB_FILE bcm2711-rpi-4-b.dtb
 # so it never gets accidentally saved:
 fdt_addr=${fdt_addr}
 env delete fdt_addr
+edgehogargs="hardwareId=${serial#}"
 
 # To boot from the rescue partition, tie GPIO4 (pin 7) to GND (pin 9)
 # The gpio input command will return an exit status of 0 (true)
@@ -91,16 +92,16 @@ if test "x${rescue}" = "xtrue" -o "x${fdt_live}" = "xunset"; then
 
 	# Setup kernel parameters
 	if test -n "${bootargs_force}" ; then
-		setenv bootargs "${bootargs_force} ${raucargs}"
+		setenv bootargs "${bootargs_force} ${raucargs} ${edgehogargs}"
 	else
-		setenv bootargs "${bootargs_default} ${bootargs_extra} ${raucargs}"
+		setenv bootargs "${bootargs_default} ${bootargs_extra} ${raucargs} ${edgehogargs}"
 	fi
 else
 	# Using FW provided device-tree
 	# Append rauc boot arguments to FW generated command line
 	# This setting will override /chosen/bootargs in the device-tree
 	echo "Using firmware device-tree"
-	setenv bootargs "${bootargs_fw} ${raucargs}"
+	setenv bootargs "${bootargs_fw} ${raucargs} ${edgehogargs}"
 fi
 
 # Store updated boot state...
