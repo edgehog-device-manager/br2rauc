@@ -117,7 +117,7 @@ size=${RAUC_IMAGE_SIZE_1}
 EOF
 
 # Install rauc.status to genimage rootpath
-install -D -m 0644 ${BINARIES_DIR}/rauc.status ${ROOTPATH_TMP}/data/rauc.status
+install -D -m 0644 ${BINARIES_DIR}/rauc.status ${ROOTPATH_TMP}/var/lib/rauc.status
 
 
 # Generate the sdcard image
