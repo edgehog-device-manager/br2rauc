@@ -41,7 +41,7 @@ mkdir ~/MyWorkDir
 cd ~/MyWorkDir
 
 # Pull in the required projects
-git clone --depth 1 --branch 2022.02.x --no-single-branch https://git.busybox.net/buildroot/
+git clone --depth 1 --branch 2022.08.x --no-single-branch https://git.busybox.net/buildroot/
 git clone https://github.com/cdsteinkuehler/br2rauc
 
 # Create the certficate and keyring files needed for signing RAUC bundles
