@@ -26,9 +26,9 @@ rm -rf "${GENIMAGE_TMP}"
 # Generate the boot filesystem image
 
 genimage \
-	--rootpath "${ROOTPATH_TMP}"   \
-	--tmppath "${GENIMAGE_TMP}"    \
-	--inputpath "${BINARIES_DIR}"  \
+	--rootpath "${ROOTPATH_TMP}" \
+	--tmppath "${GENIMAGE_TMP}" \
+	--inputpath "${BINARIES_DIR}" \
 	--outputpath "${BINARIES_DIR}" \
 	--config "${GENBOOTFS_CFG}"
 
@@ -37,7 +37,7 @@ genimage \
 [ -e ${BINARIES_DIR}/temp-update ] && rm -rf ${BINARIES_DIR}/temp-update
 mkdir -p ${BINARIES_DIR}/temp-update
 
-cat >> ${BINARIES_DIR}/temp-update/manifest.raucm << EOF
+cat >>${BINARIES_DIR}/temp-update/manifest.raucm <<EOF
 [update]
 compatible=${RAUC_COMPATIBLE}
 version=${RAUC_VERSION}
@@ -64,7 +64,7 @@ ${HOST_DIR}/bin/rauc bundle \
 [ -e ${BINARIES_DIR}/temp-rootfs ] && rm -rf ${BINARIES_DIR}/temp-rootfs
 mkdir -p ${BINARIES_DIR}/temp-rootfs
 
-cat >> ${BINARIES_DIR}/temp-rootfs/manifest.raucm << EOF
+cat >>${BINARIES_DIR}/temp-rootfs/manifest.raucm <<EOF
 [update]
 compatible=${RAUC_COMPATIBLE}
 version=${RAUC_VERSION}
@@ -88,7 +88,7 @@ ${HOST_DIR}/bin/rauc bundle \
 #        suggestions welcome!
 eval $(rauc --keyring ${BR2_EXTERNAL_BR2RAUC_PATH}/openssl-ca/dev/ca.cert.pem --output-format=shell info ${BINARIES_DIR}/update.raucb)
 
-cat > ${BINARIES_DIR}/rauc.status << EOF
+cat >${BINARIES_DIR}/rauc.status <<EOF
 [slot.rescue.0]
 bundle.compatible=${RAUC_MF_COMPATIBLE}
 bundle.version=${RAUC_MF_VERSION}
@@ -119,15 +119,14 @@ EOF
 # Install rauc.status to genimage rootpath
 install -D -m 0644 ${BINARIES_DIR}/rauc.status ${ROOTPATH_TMP}/var/lib/rauc.status
 
-
 # Generate the sdcard image
 
 rm -rf "${GENIMAGE_TMP}"
 
 genimage \
-	--rootpath "${ROOTPATH_TMP}"   \
-	--tmppath "${GENIMAGE_TMP}"    \
-	--inputpath "${BINARIES_DIR}"  \
+	--rootpath "${ROOTPATH_TMP}" \
+	--tmppath "${GENIMAGE_TMP}" \
+	--inputpath "${BINARIES_DIR}" \
 	--outputpath "${BINARIES_DIR}" \
 	--config "${GENIMAGE_CFG}"
 
@@ -137,4 +136,3 @@ bmaptool create "${BINARIES_DIR}/sdcard.img" -o "${BINARIES_DIR}/sdcard.img.bmap
 # Compress the sdcard image
 [ -e "${BINARIES_DIR}/sdcard.img.xz" ] && rm "${BINARIES_DIR}/sdcard.img.xz"
 xz -v -T 0 "${BINARIES_DIR}/sdcard.img"
-

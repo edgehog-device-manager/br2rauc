@@ -65,6 +65,15 @@ max_framebuffers=2
 # Disable compensation for displays with overscan
 disable_overscan=1
 
+# How much memory in MB to assign to the GPU on Pi models having
+# 256, 512 or 1024 MB total memory
+gpu_mem_256=100
+gpu_mem_512=100
+gpu_mem_1024=100
+
+# enable autoprobing of Bluetooth driver without need of hciattach/btattach
+dtparam=krnbt=on
+
 [cm4]
 # Enable host mode on the 2711 built-in XHCI USB controller.
 # This line should be removed if the legacy DWC2 controller is required
@@ -102,4 +111,3 @@ gpio=4=ip,pu
 
 # Enable early debugging info
 uart_2ndstage=1
-
